@@ -1,8 +1,9 @@
 require 'net/http'
 require 'uri'
+require 'cgi'
 require 'json'
 
-uri = URI.parse('https://api.github.com/search/users?q=language:Objective-C+created:2009-08-18')
+uri = URI.parse('https://api.github.com/search/users?q=language:Objective-C+created:' + CGI.escape('<2009-08-18'))
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 res = http.start {
